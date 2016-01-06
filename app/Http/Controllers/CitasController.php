@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use API_Medico\Http\Requests;
 use API_Medico\Http\Controllers\Controller;
 use API_Medico\Citas;
+use API_Medico\Pacientes;
 
 class CitasController extends Controller
 {
@@ -97,4 +98,28 @@ class CitasController extends Controller
     {
         //
     }
+
+
+/**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function citaPorCedula($id)
+    {
+        //
+        $paciente = Pacientes::where('pacientes.cedula','=','23503033')->get();
+
+        $cita = Citas::where('citas.paciente','=',$paciente[0]->id)->get();
+
+        return response()->json(["citas" => $cita,"paciente" => $paciente]);
+        
+     //Eloquent orm
+
+    }
+
+
+
+
 }

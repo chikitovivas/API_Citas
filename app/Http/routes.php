@@ -16,5 +16,8 @@ Route::get('/', function () {
 });
 
 Route::resource('Citas','CitasController');
+Route::get('Citas/porCedula/{id}','CitasController@citaPorCedula');
+
+
 
 

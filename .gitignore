@@ -1,0 +1,9 @@
+/nbproject/private/
+/vendor
+/node_modules
+Homestead.yaml
+Homestead.json
+.env
+/public/images
+/public/ca/pdfs/*
+/public/ca/pics/*
