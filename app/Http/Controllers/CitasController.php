@@ -8,6 +8,9 @@ use API_Medico\Http\Requests;
 use API_Medico\Http\Controllers\Controller;
 use API_Medico\Citas;
 use API_Medico\Pacientes;
+use API_Medico\Diasocupados;
+use Input;
+use DB;
 
 class CitasController extends Controller
 {
@@ -38,7 +41,9 @@ class CitasController extends Controller
     public function create()
     {
         $citas = new Citas;
-        $citas->fill(array('fecha'=>"2015-12-12", 'hora'=>"10:06", 'paciente'=>1, 'medicos'=>2, 'tratamiento'=>"tratamiento", 'diagnostico'=>"diagnostico", 'motivo'=>"Dolor de pipe"));
+
+        $citas->fill(Input::all());
+        
         $citas->save();    
     }
 
@@ -105,21 +110,85 @@ class CitasController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
-     */
+ **/
     public function citaPorCedula($id)
     {
         //
+
+
+        $datos['nombre'];
         $paciente = Pacientes::where('pacientes.cedula','=','23503033')->get();
 
         $cita = Citas::where('citas.paciente','=',$paciente[0]->id)->get();
 
         return response()->json(["citas" => $cita,"paciente" => $paciente]);
+
+     //Eloquent orm
+
+    }
+
+/*
+    public function citaPorCedula($id)
+    {
         
+
+
+        $datos['nombre'];
+        $paciente = Pacientes::where('pacientes.cedula','=','23503033')->get();
+
+        $cita = Citas::where('citas.paciente','=',$paciente[0]->id)->get();
+
+        return response()->json(["citas" => $cita,"paciente" => $paciente]);
+    }
+
+*/
+
+        public function pacientePorId($id)
+    {
+        //
+
+        $paciente = DB::table('pacientes')
+            ->select('*')
+            ->where('id', '=', $id)
+            ->get();
+        
+
+        return response()->json($paciente);
+
+     //Eloquent orm
+
+    }
+   
+
+
+
+
+public function CitaPorFecha($fecha)
+    {
+        //
+        $citas = DB::table('citas')
+            ->select('*')
+            ->where('fecha', '=', $fecha)
+            ->get();
+
+
+        return response()->json($citas);
+
      //Eloquent orm
 
     }
 
 
+
+public function insertarFechaOcupada()
+{
+
+    $diasocupados = new Diasocupados;
+    $diasocupados->fill(Input::all());
+    $diasocupados->save(); 
+
+
+}
 
 
 }

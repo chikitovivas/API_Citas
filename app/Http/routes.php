@@ -17,7 +17,6 @@ Route::get('/', function () {
 
 Route::resource('Citas','CitasController');
 Route::get('Citas/porCedula/{id}','CitasController@citaPorCedula');
-
-
-
-
+Route::get('Citas/porFecha/{fecha}','CitasController@CitaPorFecha');
+Route::get('Pacientes/porId/{id}','CitasController@pacientePorId');
+Route::post('Diasocupados/insertarfecha','CitasController@insertarFechaOcupada');
