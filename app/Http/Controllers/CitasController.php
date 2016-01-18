@@ -143,7 +143,7 @@ class CitasController extends Controller
 
 */
 
-        public function pacientePorId($id)
+    public function pacientePorId($id)
     {
         //
 
@@ -163,7 +163,7 @@ class CitasController extends Controller
 
 
 
-public function CitaPorFecha($fecha)
+    public function CitaPorFecha($fecha)
     {
         //
         $citas = DB::table('citas')
@@ -180,42 +180,42 @@ public function CitaPorFecha($fecha)
 
 
 
-public function insertarFechaOcupada()
-{
+    public function insertarFechaOcupada()
+    {
 
-    $diasocupados = new Diasocupados;
-    $diasocupados->fill(Input::all());
-    $diasocupados->save(); 
-
-
-}
+        $diasocupados = new Diasocupados;
+        $diasocupados->fill(Input::all());
+        $diasocupados->save(); 
 
 
-
-public function insertarPaciente()
-{
-
-    $paciente = new Pacientes;
-    $paciente->fill(Input::all());
-    $paciente->save(); 
-
-
-}
-
-
-public function insertarCita()
-{
-
-    $cita = new Citas;
-    $cita->fill(Input::all());
-    $cita->save(); 
-
-
-}
+    }
 
 
 
-        public function diasOcupados()
+    public function insertarPaciente()
+    {
+
+        $paciente = new Pacientes;
+        $paciente->fill(Input::all());
+        $paciente->save(); 
+
+
+    }
+
+
+    public function insertarCita()
+    {
+
+        $cita = new Citas;
+        $cita->fill(Input::all());
+        $cita->save(); 
+
+
+    }
+
+
+
+    public function diasOcupados()
     {
         //
 
@@ -230,6 +230,21 @@ public function insertarCita()
 
     }
 
+    public function find_by_doctor($id)
+    {
 
+        /*$data = DB::select("SELECT citas.id, citas.fecha, citas.hora, citas.motivo, pacientes.nombre, pacientes.apellido, pacientes.id
+                            FROM citas, pacientes
+                            WHERE citas.medicos = 1 AND citas.paciente = pacientes.id")->pluck();*/
+
+        $data = DB::table('citas')
+                    ->select('citas.id','citas.fecha', 'citas.hora', 'citas.motivo','pacientes.nombre', 'pacientes.apellido', 'pacientes.id as id_pa')
+                    ->where('citas.medicos','=', 1)
+                    ->join('pacientes', 'citas.paciente', '=', 'pacientes.id')
+                    
+                    ->get();
+
+        return $data;
+    } 
 
 }

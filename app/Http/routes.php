@@ -23,3 +23,4 @@ Route::post('Diasocupados/insertarfecha','CitasController@insertarFechaOcupada')
 Route::get('Diasocupados/diasOcupados','CitasController@diasOcupados');
 Route::post('Pacientes/insertarPaciente','CitasController@insertarPaciente');
 Route::post('Citas/insertarCita','CitasController@insertarCita');
+Route::get('Citas/{id}/doctor','CitasController@find_by_doctor');
