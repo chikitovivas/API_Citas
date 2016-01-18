@@ -191,4 +191,45 @@ public function insertarFechaOcupada()
 }
 
 
+
+public function insertarPaciente()
+{
+
+    $paciente = new Pacientes;
+    $paciente->fill(Input::all());
+    $paciente->save(); 
+
+
+}
+
+
+public function insertarCita()
+{
+
+    $cita = new Citas;
+    $cita->fill(Input::all());
+    $cita->save(); 
+
+
+}
+
+
+
+        public function diasOcupados()
+    {
+        //
+
+        $fechas = DB::table('diasocupados')
+            ->select('*')
+            ->get();
+        
+
+        return response()->json($fechas);
+
+     //Eloquent orm
+
+    }
+
+
+
 }
