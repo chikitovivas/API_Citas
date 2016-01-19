@@ -20,3 +20,13 @@ class Pacientes extends Model
 								'tlfncelular',		
 							];
 }
+
+public static function findById($id)
+{
+    $paciente = DB::table('pacientes')
+    ->select('*')
+    ->where('id', '=', $id)
+    ->get();
+
+	return $paciente;    
+}

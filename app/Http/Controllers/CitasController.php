@@ -143,26 +143,6 @@ class CitasController extends Controller
 
 */
 
-    public function pacientePorId($id)
-    {
-        //
-
-        $paciente = DB::table('pacientes')
-            ->select('*')
-            ->where('id', '=', $id)
-            ->get();
-        
-
-        return response()->json($paciente);
-
-     //Eloquent orm
-
-    }
-   
-
-
-
-
     public function CitaPorFecha($fecha)
     {
         //
@@ -192,17 +172,6 @@ class CitasController extends Controller
 
 
 
-    public function insertarPaciente()
-    {
-
-        $paciente = new Pacientes;
-        $paciente->fill(Input::all());
-        $paciente->save(); 
-
-
-    }
-
-
     public function insertarCita()
     {
 
@@ -230,21 +199,6 @@ class CitasController extends Controller
 
     }
 
-    public function find_by_doctor($id)
-    {
 
-        /*$data = DB::select("SELECT citas.id, citas.fecha, citas.hora, citas.motivo, pacientes.nombre, pacientes.apellido, pacientes.id
-                            FROM citas, pacientes
-                            WHERE citas.medicos = 1 AND citas.paciente = pacientes.id")->pluck();*/
-
-        $data = DB::table('citas')
-                    ->select('citas.id','citas.fecha', 'citas.hora', 'citas.motivo','pacientes.nombre', 'pacientes.apellido', 'pacientes.id as id_pa')
-                    ->where('citas.medicos','=', 1)
-                    ->join('pacientes', 'citas.paciente', '=', 'pacientes.id')
-                    
-                    ->get();
-
-        return $data;
-    } 
 
 }
