@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use API_Medico\Http\Requests;
 use API_Medico\Http\Controllers\Controller;
+use API_Medico\Medicos;
 
 class MedicosController extends Controller
 {
@@ -87,14 +88,17 @@ class MedicosController extends Controller
     
     public function citas($id)
     {
+        //$data = Medicos::citas(Auth::user()->id);
+        $data = Medicos::citas($id);
 
-        $data = DB::table('citas')
-                    ->select('citas.id','citas.fecha', 'citas.hora', 'citas.motivo','pacientes.nombre', 'pacientes.apellido', 'pacientes.id as id_pa')
-                    ->where('citas.medicos','=', 1)
-                    ->join('pacientes', 'citas.paciente', '=', 'pacientes.id')
-                    
-                    ->get();
-
-        return $data;
+        return response()->json(["citas" => $data]);
     } 
+
+    public function get_Pacientes_Citas($id)
+    {
+        //$data = Medicos::get_pacientes_citas(Auth::user()->id);
+        $data = Medicos::get_pacientes_citas($id);
+
+        return response()->json(["pacientes" => $data]);
+    }
 }

@@ -18,6 +18,7 @@ Route::get('/', function () {
 /*************************************************** HomeController *************************************************/
 Route::resource('Home','HomeController');
 /*---------------GET-----------------------*/
+Route::get("Home/get_user","HomeController@get_log"); /* Herrera, medico logeado */
 /*---------------POST-----------------------*/
 
 
@@ -43,6 +44,7 @@ Route::get('Pacientes/porId/{id}','PacientesController@findById');
 Route::resource('Medicos','MedicosController');
 /*---------------GET-----------------------*/
 Route::get('Citas/{id}/doctor','MedicosController@citas');
+Route::get('Citas/{id}/get_CPacientes','MedicosController@get_Pacientes_Citas');
 /*---------------POST-----------------------*/
 
 

@@ -94,4 +94,5 @@ class PacientesController extends Controller
         
         return response()->json($paciente);
     }
+
 }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use API_Medico\Http\Requests;
 use API_Medico\Http\Controllers\Controller;
+use Input;
 
 class HomeController extends Controller
 {
@@ -85,5 +86,9 @@ class HomeController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function get_log(){
+        return response()->json(["user" => Auth::user()]);
     }
 }
