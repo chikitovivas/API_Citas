@@ -8,6 +8,7 @@ use API_Medico\Http\Requests;
 use API_Medico\Http\Controllers\Controller;
 use Input;
 use API_Medico\User;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -18,7 +19,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        //
+        return "jejeps";
     }
 
     /**
@@ -26,6 +27,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create()
     {
         $user = new User;
@@ -38,7 +40,6 @@ class HomeController extends Controller
             "password" => 123456,
             "identificacion" => "lj",
             ));*/
-
         $user->save(); 
     }
 
@@ -50,7 +51,7 @@ class HomeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         return "jejeps";
     }
 
     /**
@@ -95,7 +96,49 @@ class HomeController extends Controller
      */
     public function destroy($id)
     {
-        //
+         return 'jejeps';
+    }
+
+    public function loginIn()
+    {
+
+    // already logged in?
+    if (\Auth::check())
+    {
+        return 'false';
+    }
+
+    $data = Input::all();
+    $user = User::where('username', '=', $data['username'])->get();
+
+    if($user[0]->password === $data['password']){
+        Auth::loginUsingId($user[0]->id);
+        return 'true';
+    }
+    return 'false';
+
+
+      /*  // was the login form posted?
+        if (\Input::method() == 'POST')
+        {
+            // check the credentials.
+            if (\Auth::instance()->login(\Input::param('username'), \Input::param('password')))
+            {
+                // logged in, go back to the page the user came from, or the
+                // application dashboard if no previous page can be detected
+                 return response()->json(["login" => true]);
+            }
+            else
+            {
+                // login failed, show an error message
+                 return response()->json(["login" => false]);
+            }
+        }*/
+    }
+
+    public function logout()
+    {
+        Auth::logout();
     }
 
     public function get_log(){
