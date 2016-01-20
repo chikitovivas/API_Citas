@@ -8,6 +8,7 @@ use API_Medico\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Input;
+use Auth;
 
 class AuthController extends Controller
 {
@@ -74,7 +75,16 @@ class AuthController extends Controller
         \Response::redirect_back('dashboard');
     }*/
 
-        // was the login form posted?
+    $user = User::where('username', '=', Input::param('username'))->get();
+
+    if($user[0]->password === Input::param('password')){
+        //Auth::login($user);
+        return 'true';
+    }
+    return 'false';
+
+
+      /*  // was the login form posted?
         if (\Input::method() == 'POST')
         {
             // check the credentials.
@@ -89,7 +99,7 @@ class AuthController extends Controller
                 // login failed, show an error message
                  return response()->json(["login" => false]);
             }
-        }
+        }*/
     }
 
 
