@@ -65,7 +65,7 @@ class AuthController extends Controller
         ]);
     }
 
-    protected function login()
+    public function login()
     {
 
   /*  // already logged in?
@@ -75,9 +75,10 @@ class AuthController extends Controller
         \Response::redirect_back('dashboard');
     }*/
 
-    $user = User::where('username', '=', Input::param('username'))->get();
+    $data = Input::all();
+    $user = User::where('username', '=', $data['username'])->get();
 
-    if($user[0]->password === Input::param('password')){
+    if($user[0]->password === $data['password']){
         //Auth::login($user);
         return 'true';
     }
