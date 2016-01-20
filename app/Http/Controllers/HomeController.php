@@ -97,7 +97,7 @@ class HomeController extends Controller
     // already logged in?
     if (\Auth::check())
     {
-        return 'false';
+        return '-false';
     }
 
     $data = Input::all();
@@ -105,9 +105,9 @@ class HomeController extends Controller
 
     if($user[0]->password === $data['password']){
         Auth::loginUsingId($user[0]->id);
-        return 'true';
+        return '-true';
     }
-    return 'false';
+    return '-false';
 
 
       /*  // was the login form posted?
