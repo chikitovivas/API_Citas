@@ -31,6 +31,8 @@ public static function findById($id)
 	return $paciente;    
 }
 
-public static function allHistory(){
-	
+public static function allHistory()
+{
+	$historias ;
+
 }

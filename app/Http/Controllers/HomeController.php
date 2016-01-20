@@ -28,9 +28,18 @@ class HomeController extends Controller
      */
     public function create()
     {
-        $User = new User;
-        $User->fill(Input::all());
-        $User->save(); 
+        $user = new User;
+        $user->fill(Input::all());
+       /* $user->fill(array(
+            "name" => "luis",
+            "last_name" => "vivas",
+            "username" => "elRey",
+            "email" => "lsls@gmail.com",
+            "password" => 123456,
+            "identificacion" => "lj",
+            ));*/
+
+        $user->save(); 
     }
 
     /**
