@@ -14,6 +14,18 @@
 Route::get('/', function () {
     return view('welcome');
 });
+/*************************************************** AuthController *************************************************/
+//Route::resource('Auth','AuthController');
+/*---------------GET-----------------------*/
+Route::any("Auth/login","Auth\AuthController@login"); // login
+/*---------------POST-----------------------*/
+
+
+/*************************************************** HomeController *************************************************/
+Route::resource('Home','HomeController');
+/*---------------GET-----------------------*/
+Route::get("Home/get_user","HomeController@get_log"); /* Herrera, medico logeado */
+/*---------------POST-----------------------*/
 
 /*************************************************** HomeController *************************************************/
 Route::resource('Home','HomeController');

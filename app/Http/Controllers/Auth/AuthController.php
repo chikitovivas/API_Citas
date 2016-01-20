@@ -7,6 +7,7 @@ use Validator;
 use API_Medico\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Input;
 
 class AuthController extends Controller
 {
@@ -62,4 +63,34 @@ class AuthController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
+
+    protected function login()
+    {
+
+  /*  // already logged in?
+    if (\Auth::check())
+    {
+        \Messages::info(__('login.already-logged-in'));
+        \Response::redirect_back('dashboard');
+    }*/
+
+        // was the login form posted?
+        if (\Input::method() == 'POST')
+        {
+            // check the credentials.
+            if (\Auth::instance()->login(\Input::param('username'), \Input::param('password')))
+            {
+                // logged in, go back to the page the user came from, or the
+                // application dashboard if no previous page can be detected
+                 return response()->json(["login" => true]);
+            }
+            else
+            {
+                // login failed, show an error message
+                 return response()->json(["login" => false]);
+            }
+        }
+    }
+
+
 }
