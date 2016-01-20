@@ -36,16 +36,12 @@ class Medicos extends Model
     }
 
     public static function get_pacientes_citas($id){
-        /*$data = DB::table('pacientes')
-            ->select('pacientes.*')
-            ->where('citas.paciente', '=', 'pacientes.id')
-        	->join('citas', 'citas.medicos', '=', $id)*/
         $data = DB::table('citas')
+        	->distinct()
             ->select('pacientes.*')
             ->where('citas.medicos','=', $id)
             ->join('pacientes', 'citas.paciente', '=', 'pacientes.id')
-            ->distinct();
-            
+
             ->get();
         return $data;
     }

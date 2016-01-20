@@ -43,8 +43,8 @@ Route::get('Pacientes/porId/{id}','PacientesController@findById');
 /*************************************************** MedicosController *************************************************/
 Route::resource('Medicos','MedicosController');
 /*---------------GET-----------------------*/
-Route::get('Citas/{id}/doctor','MedicosController@citas');
-Route::get('Citas/{id}/get_CPacientes','MedicosController@get_Pacientes_Citas');
+Route::get('Citas/{id}/doctor','MedicosController@citas');	//Herrera, citas de un medico
+Route::get('Citas/{id}/get_CPacientes','MedicosController@get_Pacientes_Citas'); //Herrera, pacientes de citas Medico
 /*---------------POST-----------------------*/
 
 

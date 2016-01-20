@@ -95,4 +95,7 @@ class PacientesController extends Controller
         return response()->json($paciente);
     }
 
+    public function historias(){
+        
+    }
 }
