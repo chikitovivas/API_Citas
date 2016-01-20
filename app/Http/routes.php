@@ -22,12 +22,13 @@ Route::get('/', function () {
 
 
 /*************************************************** HomeController *************************************************/
-Route::resource('Home','HomeController');
+//Route::resource('Home','HomeController');
 /*---------------GET-----------------------*/
 Route::get('/get_user','HomeController@get_log'); /* Herrera, medico logeado */
 Route::get('/logout','HomeController@logout'); // logout
 /*---------------POST-----------------------*/
 Route::any('/login','HomeController@loginIn'); // login
+Route::any('/create','HomeController@create'); // create
 
 
 /*************************************************** CitasController *************************************************/
