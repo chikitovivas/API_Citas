@@ -32,14 +32,6 @@ class HomeController extends Controller
     {
         $user = new User;
         $user->fill(Input::all());
-        /*$user->fill(array(
-            "name" => "luis",
-            "last_name" => "vivas",
-            "username" => "elReyr",
-            "email" => "lssls@gmail.com",
-            "password" => 123456,
-            "identificacion" => "ljs",
-            ));*/
         $user->save(); 
     }
 
