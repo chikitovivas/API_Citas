@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use API_Medico\Http\Requests;
 use API_Medico\Http\Controllers\Controller;
 use Input;
+use API_Medico\User;
 
 class HomeController extends Controller
 {
@@ -27,7 +28,7 @@ class HomeController extends Controller
      */
     public function create()
     {
-        $User = new Users;
+        $User = new User;
         $User->fill(Input::all());
         $User->save(); 
     }
