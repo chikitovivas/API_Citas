@@ -35,7 +35,7 @@ Route::any('/create','HomeController@create'); // create
 Route::resource('Citas','CitasController');
 /*---------------GET-----------------------*/
 Route::get('Citas/porCedula/{id}','CitasController@citaPorCedula'); // todas las citas por una cedula paciente
-Route::get('Citas/porFecha/{fecha}','CitasController@CitaPorFecha'); // todas las citas de una fecha
+Route::get('Citas/porFecha/{fecha}/{username}','CitasController@CitaPorFecha'); // todas las citas de una fecha/username
 Route::get('Diasocupados/diasOcupados','CitasController@diasOcupados'); //
 /*---------------POST-----------------------*/
 Route::post('Diasocupados/insertarfecha','CitasController@insertarFechaOcupada'); //
@@ -46,15 +46,15 @@ Route::post('Citas/insertarCita','CitasController@insertarCita'); //insertar cit
 Route::resource('Pacientes','PacientesController');
 /*---------------GET-----------------------*/
 Route::get('Pacientes/porId/{id}','PacientesController@findById');	//Herrera, encontrar paciente por id
-Route::get('Pacientes/historias/{id}','PacientesController@citas'); // Herrera, todas las citas de un paciente por id
+Route::get('Pacientes/historias/{id}/{username}','PacientesController@citas'); // Herrera, todas las citas de un paciente por id /username
 /*---------------POST-----------------------*/
 
 
 /*************************************************** MedicosController *************************************************/
 Route::resource('Medicos','MedicosController');
 /*---------------GET-----------------------*/
-Route::get('Citas/{id}/doctor','MedicosController@citas');	//Herrera, citas de un medico
-Route::get('Citas/{id}/get_CPacientes','MedicosController@get_Pacientes_Citas'); //Herrera, pacientes de citas Medico
+Route::get('Citas/{username}/doctor','MedicosController@citas');	//Herrera, citas de un medico /username
+Route::get('Citas/{username}/get_CPacientes','MedicosController@get_Pacientes_Citas'); //Herrera, pacientes de citas Medico /username
 /*---------------POST-----------------------*/
 
 

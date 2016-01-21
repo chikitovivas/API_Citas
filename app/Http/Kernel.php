@@ -29,5 +29,6 @@ class Kernel extends HttpKernel
         'auth' => \API_Medico\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'guest' => \API_Medico\Http\Middleware\RedirectIfAuthenticated::class,
+        //'auth0.jwt' => Auth0\Login\Middleware\Auth0JWTMiddleware::class,
     ];
 }

@@ -86,18 +86,20 @@ class MedicosController extends Controller
         //
     }
     
-    public function citas($id)
+    public function citas($username)
     {
-        //$data = Medicos::citas(Auth::user()->id);
-        $data = Medicos::citas($id);
+        $id = User::findIdByUsername($username);
+
+        $data = Medicos::citas($id[0]->id);
 
         return response()->json(["citas" => $data]);
     } 
 
     public function get_Pacientes_Citas($id)
     {
-        //$data = Medicos::get_pacientes_citas(Auth::user()->id);
-        $data = Medicos::get_pacientes_citas($id);
+        $id = User::findIdByUsername($username);
+
+        $data = Medicos::get_pacientes_citas($id[0]->id));
 
         return response()->json(["pacientes" => $data]);
     }
