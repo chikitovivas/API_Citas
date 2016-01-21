@@ -3,6 +3,7 @@
 namespace API_Medico;
 
 use Illuminate\Database\Eloquent\Model;
+use DB;
 
 class Pacientes extends Model
 {
@@ -19,7 +20,7 @@ class Pacientes extends Model
 								'tlfncasa',		
 								'tlfncelular',		
 							];
-}
+
 
 public static function findById($id)
 {
@@ -31,8 +32,15 @@ public static function findById($id)
 	return $paciente;    
 }
 
-public static function allHistory()
+public static function allCitas($id,$user) //Todas las citas
 {
-	$historias ;
+        $data = DB::table('citas')
+            ->select('citas.*')
+            ->where('citas.medicos', '=', $user)
+            ->where('citas.paciente','=',$id)
+
+            ->get();
+        return $data;
+}
 
 }

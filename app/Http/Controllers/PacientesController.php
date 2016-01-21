@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use API_Medico\Http\Requests;
 use API_Medico\Http\Controllers\Controller;
 use Input;
+use API_Medico\Pacientes;
+use Auth;
 
 class PacientesController extends Controller
 {
@@ -95,7 +97,10 @@ class PacientesController extends Controller
         return response()->json($paciente);
     }
 
-    public function historias(){
-        
+    public function citas($id){
+
+        $citas = Pacientes::allCitas($id,Auth::user()->id);
+
+        return response()->json($citas);
     }
 }

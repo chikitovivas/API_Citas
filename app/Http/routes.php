@@ -46,6 +46,7 @@ Route::post('Citas/insertarCita','CitasController@insertarCita');
 Route::resource('Pacientes','PacientesController');
 /*---------------GET-----------------------*/
 Route::get('Pacientes/porId/{id}','PacientesController@findById');
+Route::get('Pacientes/historias/{id}','PacientesController@citas');
 /*---------------POST-----------------------*/
 
 
