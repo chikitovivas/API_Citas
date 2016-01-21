@@ -24,7 +24,7 @@ Route::get('/', function () {
 /*************************************************** HomeController *************************************************/
 //Route::resource('Home','HomeController');
 /*---------------GET-----------------------*/
-Route::get('/get_user','HomeController@get_log'); /* Herrera, medico logeado */
+Route::get('/get_user','HomeController@get_log'); /* Herrera, datos del medico o asistente logeado */
 Route::get('/logout','HomeController@logout'); // logout
 /*---------------POST-----------------------*/
 Route::any('/login','HomeController@loginIn'); // login
@@ -34,19 +34,19 @@ Route::any('/create','HomeController@create'); // create
 /*************************************************** CitasController *************************************************/
 Route::resource('Citas','CitasController');
 /*---------------GET-----------------------*/
-Route::get('Citas/porCedula/{id}','CitasController@citaPorCedula');
-Route::get('Citas/porFecha/{fecha}','CitasController@CitaPorFecha');
-Route::get('Diasocupados/diasOcupados','CitasController@diasOcupados');
+Route::get('Citas/porCedula/{id}','CitasController@citaPorCedula'); // todas las citas por una cedula paciente
+Route::get('Citas/porFecha/{fecha}','CitasController@CitaPorFecha'); // todas las citas de una fecha
+Route::get('Diasocupados/diasOcupados','CitasController@diasOcupados'); //
 /*---------------POST-----------------------*/
-Route::post('Diasocupados/insertarfecha','CitasController@insertarFechaOcupada');
-Route::post('Citas/insertarCita','CitasController@insertarCita');
+Route::post('Diasocupados/insertarfecha','CitasController@insertarFechaOcupada'); //
+Route::post('Citas/insertarCita','CitasController@insertarCita'); //insertar cita
 
 
 /*************************************************** PacientesController *************************************************/
 Route::resource('Pacientes','PacientesController');
 /*---------------GET-----------------------*/
-Route::get('Pacientes/porId/{id}','PacientesController@findById');
-Route::get('Pacientes/historias/{id}','PacientesController@citas');
+Route::get('Pacientes/porId/{id}','PacientesController@findById');	//Herrera, encontrar paciente por id
+Route::get('Pacientes/historias/{id}','PacientesController@citas'); // Herrera, todas las citas de un paciente por id
 /*---------------POST-----------------------*/
 
 
