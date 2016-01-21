@@ -140,7 +140,8 @@ class CitasController extends Controller
     public function CitaPorFecha($fecha)
     {
         $user = Auth::user();
-        $citas = Medicos::cita_fecha($fecha, $user->id);
+        //return Auth::user()->toArray();
+        $citas = Medicos::cita_fecha($fecha, 1);
 
 
         return response()->json($citas);

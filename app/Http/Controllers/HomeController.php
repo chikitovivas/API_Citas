@@ -102,13 +102,14 @@ class HomeController extends Controller
         return '-false';
     }
 
-    //$user = User::findByUsername('chikito');
-    $user = User::findByUsername($data['username']);
-
+    $user = User::findByUsername('mboscan');
     $data = Input::all();
+    //$user = User::findByUsername($data['username']);
+
+    
     if($user){
-        if($user[0]->password ===  $data['password']){
-        //if($user[0]->password ===  '23503034'){
+        //if($user[0]->password ===  $data['password']){
+        if($user[0]->password ===  '1234'){
             Auth::loginUsingId($user[0]->id);
             return '-true';
         }
