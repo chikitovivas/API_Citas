@@ -9,6 +9,7 @@ use API_Medico\Http\Controllers\Controller;
 use Input;
 use API_Medico\User;
 use API_Medico\Medicos;
+use API_Medico\Asistentes;
 use Auth;
 
 class HomeController extends Controller
@@ -101,16 +102,20 @@ class HomeController extends Controller
         return '-false';
     }
 
-    //$data = Input::all();
-    //$user = User::where('username', '=', 'chikito')->get();
-    $user = User::where('username', '=', $data['username'])->get();
+    //$user = User::findByUsername('chikito');
+    $user = User::findByUsername($data['username']);
 
-    if($user[0]->password ===  $data['password']){
-    //if($user[0]->password ===  '23503034'){
-        Auth::loginUsingId($user[0]->id);
-        return '-true';
+    $data = Input::all();
+    if($user){
+        if($user[0]->password ===  $data['password']){
+        //if($user[0]->password ===  '23503034'){
+            Auth::loginUsingId($user[0]->id);
+            return '-true';
+        }
+        return '-false';        
     }
     return '-false';
+
 
 
       /*  // was the login form posted?
@@ -140,10 +145,20 @@ class HomeController extends Controller
 
         $user = Auth::user();
 
-        $medico = Medicos::where('identificacion', '=', $user->identificacion)->get();
+        if(User::isMedico($user->identificacion)){
+            $medico = Medicos::where('identificacion', '=', $user->identificacion)->get();
 
-       // $horario = Horario::where('idmedico', '=', $user->id);
+           // $horario = Horario::where('idmedico', '=', $user->id);
 
-        return response()->json(["user" => $user, "medico" => $medico]);
+            return response()->json(["user" => $user, "medico" => $medico[0]]);
+        }else{
+            $asistentes = Asistentes::where('identificacion', '=', $user->identificacion)->get();
+
+           // $horario = Horario::where('idmedico', '=', $user->id);
+
+            return response()->json(["user" => $user, "asistentes" => $asistentes[0]]);
+        }
+
+
     }
 }

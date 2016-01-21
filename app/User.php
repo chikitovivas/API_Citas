@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use DB;
 
 class User extends Model implements AuthenticatableContract,
                                     AuthorizableContract,
@@ -38,4 +39,22 @@ class User extends Model implements AuthenticatableContract,
     protected $hidden = [ 'remember_token'];
 
     public $timestamps = false;
+
+    public static function isMedico($identificacion){
+
+        if(DB::table('medicos')->where('medicos.identificacion','=',$identificacion)->get() === []){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    public static function findByUsername($username){
+        if(DB::table('users')->where('users.username', '=', $username)->get() === []){
+            return false;
+        }else{
+            return User::where('username', '=', $username)->get();
+        }
+    }
+
 }
