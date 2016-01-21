@@ -10,6 +10,7 @@ use API_Medico\Citas;
 use API_Medico\Pacientes;
 use API_Medico\Diasocupados;
 use API_Medico\Medicos;
+use API_Medico\User;
 use Input;
 use DB;
 use Auth;
@@ -137,11 +138,14 @@ class CitasController extends Controller
 
 */
 
-    public function CitaPorFecha($fecha)
+    public function CitaPorFecha($fecha,$username)
     {
         $user = Auth::user();
-        //return Auth::user()->toArray();
-        $citas = Medicos::cita_fecha($fecha, 1);
+
+        $id = User::findIdByUsername($username);
+
+        $citas = Medicos::cita_fecha($fecha, $id[0]->id);
+
 
 
         return response()->json($citas);

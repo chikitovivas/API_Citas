@@ -145,7 +145,10 @@ return [
         API_Medico\Providers\EventServiceProvider::class,
         API_Medico\Providers\RouteServiceProvider::class,
         Barryvdh\Cors\ServiceProvider::class,
-
+        //Auth0\Login\LoginServiceProvider::class,
+        
+        //\Auth0\Login\Contract\Auth0UserRepository::class,
+        //\Auth0\Login\Repository\Auth0UserRepository::class,
     ],
 
     /*
@@ -194,6 +197,7 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
+        //'Auth0'     => 'Auth0\Login\Facade\Auth0',
 
     ],
 

@@ -11,6 +11,7 @@ use API_Medico\User;
 use API_Medico\Medicos;
 use API_Medico\Asistentes;
 use Auth;
+use Auth0;
 
 class HomeController extends Controller
 {
@@ -102,14 +103,18 @@ class HomeController extends Controller
         return '-false';
     }
 
-    $user = User::findByUsername('mboscan');
+
+    //$user = User::findByUsername('mboscan');
+
+
     $data = Input::all();
-    //$user = User::findByUsername($data['username']);
+    $user = User::findByUsername($data['username']);
 
     
     if($user){
-        //if($user[0]->password ===  $data['password']){
-        if($user[0]->password ===  '1234'){
+        if($user[0]->password ===  $data['password']){
+
+        //if($user[0]->password ===  '1234'){
             Auth::loginUsingId($user[0]->id);
             return '-true';
         }
