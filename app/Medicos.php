@@ -9,7 +9,7 @@ use DB;
 class Medicos extends Model
 {
          
-    protected $table = 'users';
+    protected $table = 'medicos';
 
     /**
      * The attributes that are mass assignable.
@@ -31,6 +31,19 @@ class Medicos extends Model
             ->join('pacientes', 'citas.paciente', '=', 'pacientes.id')
             
             ->get();
+
+        return $data;
+    }
+
+    public static function cita_fecha($fecha, $id)
+    {
+        $data = DB::table('citas')
+            ->select('citas.*')
+            ->where('citas.medicos','=', $id)
+            ->where('citas.fecha', '=', $fecha)
+
+            ->get();
+
 
         return $data;
     }

@@ -9,8 +9,10 @@ use API_Medico\Http\Controllers\Controller;
 use API_Medico\Citas;
 use API_Medico\Pacientes;
 use API_Medico\Diasocupados;
+use API_Medico\Medicos;
 use Input;
 use DB;
+use Auth;
 
 class CitasController extends Controller
 {
@@ -113,17 +115,12 @@ class CitasController extends Controller
  **/
     public function citaPorCedula($id)
     {
-        //
 
-
-        $datos['nombre'];
-        $paciente = Pacientes::where('pacientes.cedula','=','23503033')->get();
+        $paciente = Pacientes::where('pacientes.cedula','=',$id)->get();
 
         $cita = Citas::where('citas.paciente','=',$paciente[0]->id)->get();
 
         return response()->json(["citas" => $cita,"paciente" => $paciente]);
-
-     //Eloquent orm
 
     }
 
@@ -131,9 +128,6 @@ class CitasController extends Controller
     public function citaPorCedula($id)
     {
         
-
-
-        $datos['nombre'];
         $paciente = Pacientes::where('pacientes.cedula','=','23503033')->get();
 
         $cita = Citas::where('citas.paciente','=',$paciente[0]->id)->get();
@@ -145,17 +139,11 @@ class CitasController extends Controller
 
     public function CitaPorFecha($fecha)
     {
-        //
-        $citas = DB::table('citas')
-            ->select('*')
-            ->where('fecha', '=', $fecha)
-            ->get();
+        $user = Auth::user();
+        $citas = Medicos::cita_fecha($fecha, $user->id);
 
 
         return response()->json($citas);
-
-     //Eloquent orm
-
     }
 
 

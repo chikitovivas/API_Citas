@@ -8,6 +8,7 @@ use API_Medico\Http\Requests;
 use API_Medico\Http\Controllers\Controller;
 use Input;
 use API_Medico\User;
+use API_Medico\Medicos;
 use Auth;
 
 class HomeController extends Controller
@@ -100,10 +101,12 @@ class HomeController extends Controller
         return '-false';
     }
 
-    $data = Input::all();
+    //$data = Input::all();
+    //$user = User::where('username', '=', 'chikito')->get();
     $user = User::where('username', '=', $data['username'])->get();
 
-    if($user[0]->password === $data['password']){
+    if($user[0]->password ===  $data['password']){
+    //if($user[0]->password ===  '23503034'){
         Auth::loginUsingId($user[0]->id);
         return '-true';
     }
@@ -134,6 +137,13 @@ class HomeController extends Controller
     }
 
     public function get_log(){
-        return response()->json(["user" => Auth::user()]);
+
+        $user = Auth::user();
+
+        $medico = Medicos::where('identificacion', '=', $user->identificacion)->get();
+
+       // $horario = Horario::where('idmedico', '=', $user->id);
+
+        return response()->json(["user" => $user, "medico" => $medico]);
     }
 }
