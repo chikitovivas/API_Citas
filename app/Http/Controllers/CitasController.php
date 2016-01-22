@@ -81,7 +81,13 @@ class CitasController extends Controller
      */
     public function edit($id)
     {
-        //
+        $citas = Citas::find($id);
+
+        $data = Input::all();
+
+        $citas->fill($data);
+
+        $citas->save();
     }
 
     /**

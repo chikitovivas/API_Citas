@@ -97,6 +97,13 @@ class PacientesController extends Controller
         return response()->json($paciente);
     }
 
+    public function findByCedula($cedula)
+    {
+        $paciente = Pacientes::findByCedula($cedula);
+        
+        return response()->json($paciente);
+    }
+
     public function citas($id,$username){
 
         $id = User::findIdByUsername($username);
