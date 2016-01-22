@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 use API_Medico\Http\Requests;
 use API_Medico\Http\Controllers\Controller;
 use API_Medico\Medicos;
+use API_Medico\User;
+use API_Medico\Pacientes;
+use API_Medico\Horario;
+use API_Medico\Dias_atencion;
+use Input;
 
 class MedicosController extends Controller
 {
@@ -58,9 +63,23 @@ class MedicosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($username)
     {
-        //
+        $data = Input::all();
+        $medico = User::findIdByUsername($username);
+
+        $medico = Medicos::find($medico[0]->id);
+        $horario = Horario::getByMedico($medico->id);
+        $dias = Dias_atencion::getByMedico($medico->id);
+
+        $medico->fill($data);
+        $horario->fill($data);
+        $dias->fill($data);
+
+        $medico->save();
+        $horario->save();
+        $dias->save();
+        
     }
 
     /**
@@ -86,19 +105,31 @@ class MedicosController extends Controller
         //
     }
     
-    public function citas($id)
+    public function citas($username)
     {
-        //$data = Medicos::citas(Auth::user()->id);
-        $data = Medicos::citas($id);
+        $id = User::findIdByUsername($username);
+
+        $data = Medicos::citas($id[0]->id);
 
         return response()->json(["citas" => $data]);
     } 
 
-    public function get_Pacientes_Citas($id)
+    public function get_Pacientes_Citas($username)
     {
-        //$data = Medicos::get_pacientes_citas(Auth::user()->id);
-        $data = Medicos::get_pacientes_citas($id);
+        $id = User::findIdByUsername($username);
+
+        $data = Medicos::get_pacientes_citas($id[0]->id);
 
         return response()->json(["pacientes" => $data]);
+    }
+
+    public function getConfiguracion($username){
+        $medico = User::findIdByUsername($username);
+
+        $medico = Medicos::find($medico[0]->id);
+        $horario = Horario::getByMedico($medico->id);
+        $dias = Dias_atencion::getByMedico($medico->id);
+
+        return response()->json(["medico" => $medico, "horario" => $horario, "dias" => $dias]);
     }
 }
