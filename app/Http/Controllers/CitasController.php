@@ -153,6 +153,7 @@ class CitasController extends Controller
         $citas = Medicos::cita_fecha($fecha, $id[0]->id);
 
 
+
         return response()->json($citas);
     }
 

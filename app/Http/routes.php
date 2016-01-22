@@ -49,7 +49,7 @@ Route::any('Citas/edit','CitasController@edit'); // edit
 //Route::resource('Pacientes','PacientesController');
 /*---------------GET-----------------------*/
 Route::get('Pacientes/porId/{id}','PacientesController@findById');	//Herrera, encontrar paciente por id
-Route::get('Pacientes/porId/{cedula}','PacientesController@findByCedula');	//Boscan, encontrar paciente por cedula
+Route::get('Pacientes/porCedula/{cedula}','PacientesController@findByCedula');	//Boscan, encontrar paciente por cedula
 Route::get('Pacientes/historias/{id}/{username}','PacientesController@citas'); // Herrera, todas las citas de un paciente por id /username
 /*---------------POST-----------------------*/
 

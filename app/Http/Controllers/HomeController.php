@@ -144,7 +144,6 @@ class HomeController extends Controller
 
     public function loginIn()
     {
-
         //$user = User::findByUsername('chikito');
         $data = Input::all();
         $user = User::findByUsername($data['username']);
