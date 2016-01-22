@@ -97,20 +97,21 @@ class HomeController extends Controller
     {
 
     // already logged in?
-    if (\Auth::check())
+   /* if (\Auth::check())
     {
         return '-false';
-    }
+    } */
 
     //$user = User::findByUsername('chikito');
+    $data = Input::all();
     $user = User::findByUsername($data['username']);
 
-    $data = Input::all();
+    
     if($user){
         if($user[0]->password ===  $data['password']){
         //if($user[0]->password ===  '23503034'){
             Auth::loginUsingId($user[0]->id);
-            return '-true';
+            return Auth::user();
         }
         return '-false';        
     }
