@@ -144,61 +144,16 @@ class HomeController extends Controller
 
     public function loginIn()
     {
-<<<<<<< HEAD
-
-    // already logged in?
-    if (\Auth::check())
-    {
-        return '-false';
-    }
-
-
-    //$user = User::findByUsername('mboscan');
-
-
-    $data = Input::all();
-    $user = User::findByUsername($data['username']);
-
-    
-    if($user){
-        if($user[0]->password ===  $data['password']){
-
-        //if($user[0]->password ===  '1234'){
-            Auth::loginUsingId($user[0]->id);
-            return '-true';
-        }
-        return '-false';        
-    }
-    return '-false';
-
-
-
-      /*  // was the login form posted?
-        if (\Input::method() == 'POST')
-        {
-            // check the credentials.
-            if (\Auth::instance()->login(\Input::param('username'), \Input::param('password')))
-            {
-                // logged in, go back to the page the user came from, or the
-                // application dashboard if no previous page can be detected
-                 return response()->json(["login" => true]);
-            }
-            else
-            {
-                // login failed, show an error message
-                 return response()->json(["login" => false]);
-=======
-        $user = User::findByUsername('chikito');
+        //$user = User::findByUsername('chikito');
         $data = Input::all();
-        //$user = User::findByUsername($data['username']);
+        $user = User::findByUsername($data['username']);
 
         
         if($user){
-            //if($user[0]->password ===  $data['password']){
-            if($user[0]->password ===  '23503034'){
+            if($user[0]->password ===  $data['password']){
+            //if($user[0]->password ===  '23503034'){
                 Auth::loginUsingId($user[0]->id);
                 return '-true';
->>>>>>> 98549789fd73b7cba7b1cea0584cb27569d78f28
             }
             return '-false';        
         }
