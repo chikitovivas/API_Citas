@@ -57,6 +57,12 @@ class User extends Model implements AuthenticatableContract,
         }
     }
 
+    public static function findPbyIdentificacion($identificacion){
+
+        return User::where('identificacion', '=', $identificacion)->get();
+        
+    }
+
     public static function findIdByUsername($username){
         $id = DB::table('users')
             ->select('medicos.id')

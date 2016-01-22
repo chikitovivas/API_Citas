@@ -88,6 +88,7 @@ class AsistentesController extends Controller
 
     public function findAll(){
         $Asistentes = Asistentes::all();
-        return $Asistentes;
+
+        return response()->json($Asistentes);
     }
 }
