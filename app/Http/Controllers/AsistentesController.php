@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use API_Medico\Http\Requests;
 use API_Medico\Http\Controllers\Controller;
+use API_Medico\Asistentes;
 
 class AsistentesController extends Controller
 {
@@ -83,5 +84,10 @@ class AsistentesController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function findAll(){
+        $Asistentes = Asistentes::all();
+        return $Asistentes;
     }
 }

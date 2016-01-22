@@ -22,25 +22,49 @@ class Pacientes extends Model
 							];
 
 
-public static function findById($id)
-{
-    $paciente = DB::table('pacientes')
-    ->select('*')
-    ->where('id', '=', $id)
-    ->get();
+	public static function findById($id)
+	{
+	    $paciente = DB::table('pacientes')
+	    ->select('*')
+	    ->where('id', '=', $id)
+	    ->get();
 
-	return $paciente;    
-}
+		return $paciente;    
+	}
 
-public static function allCitas($id,$user) //Todas las citas
-{
-        $data = DB::table('citas')
-            ->select('citas.*')
-            ->where('citas.medicos', '=', $user)
-            ->where('citas.paciente','=',$id)
+	public static function findByCedula($cedula)
+	{
+	    $paciente = DB::table('pacientes')
+	    ->select('*')
+	    ->where('cedula', '=', $cedula)
+	    ->get();
 
-            ->get();
-        return $data;
-}
+		return $paciente;    
+	}
+
+	public static function allCitas($id,$user) //Todas las citas
+	{
+	        $data = DB::table('citas')
+	            ->select('citas.*')
+	            ->where('citas.medicos', '=', $user)
+	            ->where('citas.paciente','=',$id)
+
+	            ->get();
+	        return $data;
+	}
+	
+	public static function pacientesByid($id) //Todos los pacientes de un medico
+	{
+	        $data = DB::table('citas')
+	        	->distinct()
+	            ->select('pacientes.*')
+	            ->where('citas.medicos', '=', $id)
+	            ->join('pacientes','pacientes.id','=','citas.paciente')
+
+
+
+	            ->get();
+	        return $data;
+	}
 
 }

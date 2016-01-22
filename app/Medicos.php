@@ -23,6 +23,7 @@ class Medicos extends Model
      *
      * @var array
      */
+    public $timestamps = false;
 
     public static function citas($id){
         $data = DB::table('citas')
@@ -53,9 +54,8 @@ class Medicos extends Model
         	->distinct()
             ->select('pacientes.*')
             ->where('citas.medicos','=', $id)
-            ->join('pacientes', 'citas.paciente', '=', 'pacientes.id')
+            ->join('pacientes', 'citas.paciente', '=', 'pacientes.id');
 
-            ->get();
         return $data;
     }
 }
