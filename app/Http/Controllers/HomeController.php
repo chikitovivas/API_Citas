@@ -37,8 +37,8 @@ class HomeController extends Controller
     {
 
         $data = Input::all();
-        /*$data = array('username'=>'nuevo2','identificacion'=>'nuevo2','email'=>'nuevo2','asistente'=>'JH', 'horainicio'=>'20000','horafin'=>'50000',
-            'lunes'=>true,'martes'=>true,'miercoles'=>true,'jueves'=>true, 'viernes'=>false,'sabado'=>false, 'domingo'=>false, 'medico'=>true);*/
+        $data = array('username'=>'nuevo5','identificacion'=>'nuevo5','email'=>'nuevo5','asistente'=>'JH', 'horainicio'=>'20000','horafin'=>'50000',
+            'lunes'=>true,'martes'=>true,'miercoles'=>true,'jueves'=>true, 'viernes'=>false,'sabado'=>false, 'domingo'=>false, 'medico'=>false);
         $user = new User;
         $user->fill($data);
         $user->save();
@@ -66,6 +66,12 @@ class HomeController extends Controller
             $horario->save();
             $dia->save();
             
+        }else{
+            $asistente = new Asistentes;
+
+            $asistente->fill($data);
+
+            $asistente->save();
         }
     }
 
