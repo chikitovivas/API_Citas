@@ -54,7 +54,9 @@ class Medicos extends Model
         	->distinct()
             ->select('pacientes.*')
             ->where('citas.medicos','=', $id)
-            ->join('pacientes', 'citas.paciente', '=', 'pacientes.id');
+            ->join('pacientes', 'citas.paciente', '=', 'pacientes.id')
+
+            ->get();
 
         return $data;
     }
