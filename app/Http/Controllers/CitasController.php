@@ -198,6 +198,14 @@ class CitasController extends Controller
 
     }
 
+    public function all($username)
+    {
 
+        $id = User::findIdByUsername($username);
+        
+        $citas = Citas::allCitas($id[0]->id);
+
+        return response()->json($citas);
+    }
 
 }
