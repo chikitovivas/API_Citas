@@ -108,11 +108,11 @@ class MedicosController extends Controller
         //
     }
     
-    public function citas($username)
+    public function citas($fecha,$username)
     {
         $id = User::findIdByUsername($username);
 
-        $data = Medicos::citas($id[0]->id);
+        $data = Medicos::citas($fecha,$id[0]->id);
 
         return response()->json(["citas" => $data]);
     } 

@@ -25,10 +25,11 @@ class Medicos extends Model
      */
     public $timestamps = false;
 
-    public static function citas($id){
+    public static function citas($fecha,$id){
         $data = DB::table('citas')
             ->select('citas.id','citas.fecha', 'citas.hora', 'citas.motivo','pacientes.nombre', 'pacientes.apellido', 'pacientes.id as id_pa')
             ->where('citas.medicos','=', $id)
+            ->where('citas.fecha', '=', $fecha)
             ->join('pacientes', 'citas.paciente', '=', 'pacientes.id')
             
             ->get();
