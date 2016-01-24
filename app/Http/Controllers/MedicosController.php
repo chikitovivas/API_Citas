@@ -69,8 +69,11 @@ class MedicosController extends Controller
         $medico = User::findIdByUsername($username);
 
         $medico = Medicos::find($medico[0]->id);
-        $horario = Horario::getByMedico($medico->id);
-        $dias = Dias_atencion::getByMedico($medico->id);
+        $horario_ = Horario::getByMedico($medico->id);
+        $dias_ = Dias_atencion::getByMedico($medico->id);
+
+        $horario = Horario::find($horario_[0]->id);
+        $dias = Dias_atencion::find($dias_[0]->id);
 
         $medico->fill($data);
         $horario->fill($data);

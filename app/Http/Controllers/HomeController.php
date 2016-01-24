@@ -37,7 +37,7 @@ class HomeController extends Controller
     {
 
         $data = Input::all();
-        /*$data = array('username'=>'nuevo1','identificacion'=>'nuevo1','email'=>'nuevo1','asistente'=>'elRey', 'horainicio'=>'20000','horafin'=>'50000',
+        /*$data = array('username'=>'nuevo2','identificacion'=>'nuevo2','email'=>'nuevo2','asistente'=>'JH', 'horainicio'=>'20000','horafin'=>'50000',
             'lunes'=>true,'martes'=>true,'miercoles'=>true,'jueves'=>true, 'viernes'=>false,'sabado'=>false, 'domingo'=>false, 'medico'=>true);*/
         $user = new User;
         $user->fill($data);
@@ -49,7 +49,7 @@ class HomeController extends Controller
             $medico = new Medicos;
 
             $medico->fill($data);
-            $asistente = User::findByUsername($data['asistente']);
+            $asistente = User::findPbyIdentificacion($data['asistente']);
             $asistente = Asistentes::where('identificacion', '=', $asistente[0]->identificacion)->get();
             $medico->fill(array('identificacion' => $user->identificacion, 'idasistente' => $asistente[0]->id));
             $medico->save();
@@ -144,14 +144,14 @@ class HomeController extends Controller
 
     public function loginIn()
     {
-        $user = User::findByUsername('chikito');
+        //$user = User::findByUsername('chikito');
         $data = Input::all();
-        //$user = User::findByUsername($data['username']);
+        $user = User::findByUsername($data['username']);
 
         
         if($user){
-            //if($user[0]->password ===  $data['password']){
-            if($user[0]->password ===  '23503034'){
+            if($user[0]->password ===  $data['password']){
+            //if($user[0]->password ===  '23503034'){
                 Auth::loginUsingId($user[0]->id);
                 return '-true';
             }
