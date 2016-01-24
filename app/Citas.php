@@ -32,7 +32,7 @@ class Citas extends Model
     {
 
     	$citas = DB::table('citas')
-    		->select('*')
+    		->select('citas.fecha','citas.hora')
     		->where('citas.medicos','=',$id)
 
     		->get();

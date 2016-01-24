@@ -123,7 +123,7 @@ class MedicosController extends Controller
 
         $data = Medicos::get_pacientes_citas($id[0]->id);
 
-        return response()->json(["pacientes" => $data]);
+        return response()->json($data);
     }
 
     public function getConfiguracion($username){
