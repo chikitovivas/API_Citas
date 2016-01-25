@@ -45,11 +45,12 @@ class Pacientes extends Model
 	public static function allCitas($id,$user) //Todas las citas
 	{
 	        $data = DB::table('citas')
-	            ->select('citas.*')
+	            ->select('*')
 	            ->where('citas.medicos', '=', $user)
-	            ->where('citas.paciente','=',$id)
+	            ->where('citas.paciente','=', $id)
 
 	            ->get();
+
 	        return $data;
 	}
 	

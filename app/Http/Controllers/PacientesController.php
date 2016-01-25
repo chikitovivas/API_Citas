@@ -8,6 +8,7 @@ use API_Medico\Http\Requests;
 use API_Medico\Http\Controllers\Controller;
 use Input;
 use API_Medico\Pacientes;
+use API_Medico\User;
 use Auth;
 
 class PacientesController extends Controller
@@ -104,11 +105,11 @@ class PacientesController extends Controller
         return response()->json($paciente);
     }
 
-    public function citas($id,$username){
+    public function citas($idP,$username){
 
         $id = User::findIdByUsername($username);
 
-        $citas = Pacientes::allCitas($id, $id[0]->id);
+        $citas = Pacientes::allCitas($idP, $id[0]->id);
 
         return response()->json($citas);
     }
