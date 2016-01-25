@@ -59,7 +59,7 @@ Route::get('Pacientes/historias/{id}/{username}','PacientesController@citas'); /
 //Route::resource('Medicos','MedicosController');
 /*---------------GET-----------------------*/
 Route::get('Medicos/cita/{fecha}/{username}','MedicosController@citas');	//Herrera, citas de un medico /username
-Route::get('Medicos/get_CPacientes/{username}','MedicosController@get_Pacientes_Citas'); //Herrera,Boscan, pacientes de citas Medico /username
+Route::get('Medicos/get_CPacientes/{username}','MedicosController@get_Pacientes_Citas'); //Herrera,Boscan, pacientes de todas las citas de un medico /username
 Route::get('Medicos/configuracion/{username}','MedicosController@getConfiguracion'); //yanir, get configuracion /username
 
 /*---------------POST-----------------------*/
