@@ -10,6 +10,7 @@ class Asistentes extends Model
 	
     protected $table="asistente";
 	
-	protected $fillable = 	['identificaion'];
+	protected $fillable = 	['identificacion'];
 
 }
+

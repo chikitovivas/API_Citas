@@ -38,11 +38,12 @@ Route::any('/edit/{username}','HomeController@edit'); // edit //username
 Route::get('Citas/porCedula/{id}','CitasController@citaPorCedula'); // todas las citas por una cedula paciente
 Route::get('Citas/porFecha/{fecha}/{username}','CitasController@CitaPorFecha'); // todas las citas de una fecha/username
 Route::get('Diasocupados/diasOcupados','CitasController@diasOcupados'); //
+Route::get('Citas/all/{username}','CitasController@all'); // Todas las citas de un medico
 /*---------------POST-----------------------*/
 Route::post('Diasocupados/insertarfecha','CitasController@insertarFechaOcupada'); //
 Route::post('Citas/insertarCita','CitasController@insertarCita'); //insertar cita
 Route::any('Citas/create','CitasController@create'); // create
-Route::any('Citas/edit','CitasController@edit'); // edit
+Route::any('Citas/edit/{id}','CitasController@edit'); // edit
 
 
 /*************************************************** PacientesController *************************************************/
@@ -53,13 +54,14 @@ Route::get('Pacientes/porCedula/{cedula}','PacientesController@findByCedula');	/
 Route::get('Pacientes/historias/{id}/{username}','PacientesController@citas'); // Herrera, todas las citas de un paciente por id /username
 Route::post('Pacientes/create','PacientesController@create');
 /*---------------POST-----------------------*/
+Route::any('Pacientes/create','PacientesController@create'); //Lino, crear paciente retornando id
 
 
 /*************************************************** MedicosController *************************************************/
 //Route::resource('Medicos','MedicosController');
 /*---------------GET-----------------------*/
-Route::get('Medicos/citas/{username}','MedicosController@citas');	//Herrera, citas de un medico /username
-Route::get('Medicos/get_CPacientes/{username}','MedicosController@get_Pacientes_Citas'); //Herrera,Boscan, pacientes de citas Medico /username
+Route::get('Medicos/cita/{fecha}/{username}','MedicosController@citas');	//Herrera, citas de un medico /username
+Route::get('Medicos/get_CPacientes/{username}','MedicosController@get_Pacientes_Citas'); //Herrera,Boscan, pacientes de todas las citas de un medico /username
 Route::get('Medicos/configuracion/{username}','MedicosController@getConfiguracion'); //yanir, get configuracion /username
 
 /*---------------POST-----------------------*/
@@ -70,3 +72,16 @@ Route::any('Medicos/edit/{username}','MedicosController@edit'); //yanir, editar 
 /*---------------GET-----------------------*/
 Route::get('Asistentes/all','AsistentesController@findAll');
 /*---------------POST-----------------------*/
+/*************************************************** EncuestasController *************************************************/
+/*---------------GET-----------------------*/
+Route::get('Encuestas/all/{id}','EncuestasController@allRespuestasCita');	//Boscan, Todas las respuesta de una cita
+Route::get('CatalogoP/respuestas/{id}','EncuestasController@CatalogoP_Respuestas');	//Boscsan, posibles catalogorespuestas de un catalogo pregunta
+Route::get('Preguntas/patologias','EncuestasController@PreguntasPatologias');	//Boscsan, preguntas de todas las patologias
+
+
+/*---------------POST-----------------------*/
+Route::any('Citas/respuestas','EncuestasController@createRespuestasCita');	//Boscan, crear registros respuestas de una cita
+Route::post('Preguntas/create','EncuestasController@createPreguntas');	//Boscan, crear Catalogo preguntas 
+Route::post('Respuestas/create','EncuestasController@createCrespuestas');	//Boscan, crear Catalogo respuestas 
+Route::post('patologias/create','EncuestasController@createCrespuestas');	//Boscan, crear Catalogo respuestas 
+

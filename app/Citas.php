@@ -5,6 +5,8 @@ namespace API_Medico;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use DB;
+
 class Citas extends Model
 {
     use SoftDeletes;
@@ -26,5 +28,15 @@ class Citas extends Model
 	
     protected $dates = ['deleted_at'];	
 
-    
+    public static function allCitas($id)
+    {
+
+    	$citas = DB::table('citas')
+    		->select('citas.fecha','citas.hora')
+    		->where('citas.medicos','=',$id)
+
+    		->get();
+
+    	return $citas;
+    }
 }

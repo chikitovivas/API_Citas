@@ -48,7 +48,8 @@ class CitasController extends Controller
         $citas = new Citas;
 
         $citas->fill(Input::all());
-        
+        //$citas->fill(array('fecha'=>'2015-1-1','hora'=>'','paciente'=>'1','medicos'=>'1','tratamiento'=>'as','diagnostico'=>'as','motivo'=>'as'));
+
         $citas->save();    
     }
 
@@ -203,6 +204,14 @@ class CitasController extends Controller
 
     }
 
+    public function all($username)
+    {
 
+        $id = User::findIdByUsername($username);
+        
+        $citas = Citas::allCitas($id[0]->id);
+
+        return response()->json($citas);
+    }
 
 }
