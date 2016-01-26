@@ -23,4 +23,5 @@ class Respuestas extends Model
 
 		return $respuestas;				
 	}
+
 }

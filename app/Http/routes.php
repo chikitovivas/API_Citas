@@ -72,5 +72,10 @@ Route::get('Asistentes/all','AsistentesController@findAll');
 /*---------------POST-----------------------*/
 /*************************************************** EncuestasController *************************************************/
 /*---------------GET-----------------------*/
-Route::get('Encuestas/all/{id}','EncuestasController@allRespuestasCita');	//Todas las respuesta de una cita
+Route::get('Encuestas/all/{id}','EncuestasController@allRespuestasCita');	//Boscan, Todas las respuesta de una cita
+Route::get('CatalogoP/respuestas/{id}','EncuestasController@CatalogoP_Respuestas');	//Boscsan, posibles catalogorespuestas de un catalogo pregunta
+Route::get('Preguntas/patologias','EncuestasController@PreguntasPatologias');	//Boscsan, preguntas de todas las patologias
+
+
 /*---------------POST-----------------------*/
+Route::any('Citas/respuestas','EncuestasController@createRespuestasCita');	//Boscan, crear registros respuestas de una cita
