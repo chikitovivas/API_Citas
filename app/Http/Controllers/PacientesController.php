@@ -33,6 +33,8 @@ class PacientesController extends Controller
         $paciente = new Pacientes;
         $paciente->fill(Input::all());
         $paciente->save(); 
+
+        return response()->json($paciente->id);
     }
 
     /**

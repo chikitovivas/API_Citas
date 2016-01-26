@@ -53,6 +53,7 @@ Route::get('Pacientes/porId/{id}','PacientesController@findById');	//Herrera, en
 Route::get('Pacientes/porCedula/{cedula}','PacientesController@findByCedula');	//Boscan, encontrar paciente por cedula
 Route::get('Pacientes/historias/{id}/{username}','PacientesController@citas'); // Herrera, todas las citas de un paciente por id /username
 /*---------------POST-----------------------*/
+Route::any('Pacientes/create','PacientesController@create'); //Lino, crear paciente retornando id
 
 
 /*************************************************** MedicosController *************************************************/

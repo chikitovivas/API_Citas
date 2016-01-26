@@ -58,25 +58,19 @@ class EncuestasController extends Controller
 
     public function PreguntasPatologias()
     {
-
         $patologias = Patologias::all();
-        $respuestas = ["hola"=>""];
-        $respuestas2 = ["chao"=>""];
-
-       /* $data = "";
 
         foreach ($patologias as $patologia) {
 
             $respuesta = CatalogoPreguntas::getAllbyPatologia($patologia->id);
 
-            $data = 
-
-
-        }*/
-            
-        $data = array_merge($respuestas);
-
-        $data = array_merge($respuestas2);
+            $respuesta = [$patologia->nombre => $respuesta];
+            if($patologia->id === 1){
+                $data = $respuesta;
+            }else{
+                $data = array_merge($data,$respuesta);
+            }   
+        }
 
         return response()->json($data); 
     }   
