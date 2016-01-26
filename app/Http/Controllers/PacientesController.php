@@ -22,6 +22,8 @@ class PacientesController extends Controller
         //
     }
 
+    
+
     /**
      * Show the form for creating a new resource.
      *
@@ -33,6 +35,8 @@ class PacientesController extends Controller
         $paciente->fill(Input::all());
         $paciente->save(); 
     }
+
+
 
     /**
      * Store a newly created resource in storage.

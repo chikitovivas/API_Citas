@@ -36,6 +36,8 @@ class CitasController extends Controller
         return response()->json($citas->toArray());
     }
 
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -49,6 +51,9 @@ class CitasController extends Controller
         
         $citas->save();    
     }
+
+
+
 
     /**
      * Store a newly created resource in storage.
