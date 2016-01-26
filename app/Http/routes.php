@@ -43,7 +43,7 @@ Route::get('Citas/all/{username}','CitasController@all'); // Todas las citas de 
 Route::post('Diasocupados/insertarfecha','CitasController@insertarFechaOcupada'); //
 Route::post('Citas/insertarCita','CitasController@insertarCita'); //insertar cita
 Route::any('Citas/create','CitasController@create'); // create
-Route::any('Citas/edit','CitasController@edit'); // edit
+Route::any('Citas/edit/{id}','CitasController@edit'); // edit
 
 
 /*************************************************** PacientesController *************************************************/
@@ -69,4 +69,8 @@ Route::any('Medicos/edit/{username}','MedicosController@edit'); //yanir, editar 
 //Route::resource('Asistentes','AsistentesController');
 /*---------------GET-----------------------*/
 Route::get('Asistentes/all','AsistentesController@findAll');
+/*---------------POST-----------------------*/
+/*************************************************** EncuestasController *************************************************/
+/*---------------GET-----------------------*/
+Route::get('Encuestas/all/{id}','EncuestasController@allRespuestasCita');	//Todas las respuesta de una cita
 /*---------------POST-----------------------*/
