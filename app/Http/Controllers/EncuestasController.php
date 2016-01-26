@@ -73,5 +73,22 @@ class EncuestasController extends Controller
         }
 
         return response()->json($data); 
-    }   
+    }
+
+    public function createPreguntas()
+    {
+        $data = Input::all();
+
+        $pregunta =  new CatalogoPreguntas;
+        $pregunta->fill($data);
+        $pregunta->save();
+    }  
+
+    public function createCrespuestas(){
+        $data = Input::all();
+
+        $respuesta =  new CatalogoRespuestas;
+        $respuesta->fill($data);
+        $respuesta->save();        
+    }
 }
