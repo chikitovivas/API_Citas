@@ -80,5 +80,7 @@ Route::get('Preguntas/patologias','EncuestasController@PreguntasPatologias');	//
 
 /*---------------POST-----------------------*/
 Route::any('Citas/respuestas','EncuestasController@createRespuestasCita');	//Boscan, crear registros respuestas de una cita
-Route::post('Patologia/create','EncuestasController@createPreguntas');	//Boscan, crear pregunta 
-Route::post('Respuestas/create','EncuestasController@createCrespuestas');	//Boscan, crear pregunta 
+Route::post('Preguntas/create','EncuestasController@createPreguntas');	//Boscan, crear Catalogo preguntas 
+Route::post('Respuestas/create','EncuestasController@createCrespuestas');	//Boscan, crear Catalogo respuestas 
+Route::post('patologias/create','EncuestasController@createCrespuestas');	//Boscan, crear Catalogo respuestas 
+

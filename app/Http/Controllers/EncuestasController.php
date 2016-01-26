@@ -91,4 +91,13 @@ class EncuestasController extends Controller
         $respuesta->fill($data);
         $respuesta->save();        
     }
+
+    public function createPatologia()
+    {
+        $data = Input::all();
+
+        $patologia =  new Patologias;
+        $patologia->fill($data);
+        $patologia->save();  
+    }
 }
