@@ -8,6 +8,7 @@ use API_Medico\Http\Requests;
 use API_Medico\Http\Controllers\Controller;
 use API_Medico\Respuestas;
 use API_Medico\CatalogoPreguntas;
+use API_Medico\CatalogoRespuestas;
 use Input;
 use API_Medico\Patologias;
 
