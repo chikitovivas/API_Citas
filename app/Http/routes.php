@@ -39,6 +39,8 @@ Route::get('Citas/porCedula/{id}','CitasController@citaPorCedula'); // todas las
 Route::get('Citas/porFecha/{fecha}/{username}','CitasController@CitaPorFecha'); // todas las citas de una fecha/username
 Route::get('Diasocupados/diasOcupados','CitasController@diasOcupados'); //
 Route::get('Citas/all/{username}','CitasController@all'); // Todas las citas de un medico
+Route::get('Citas/delete/{id}','CitasController@destroy');
+
 /*---------------POST-----------------------*/
 Route::post('Diasocupados/insertarfecha','CitasController@insertarFechaOcupada'); //
 Route::post('Citas/insertarCita','CitasController@insertarCita'); //insertar cita

@@ -27,7 +27,7 @@ class Medicos extends Model
 
     public static function citas($fecha,$id){
         $data = DB::table('citas')
-            ->select('citas.id','citas.fecha', 'citas.hora', 'citas.motivo','pacientes.nombre', 'pacientes.apellido', 'pacientes.id as id_pa')
+            ->select('citas.id','citas.fecha', 'citas.hora', 'citas.motivo','pacientes.nombre', 'pacientes.apellido', 'pacientes.id as id_pa', 'pacientes.cedula', 'pacientes.direccion', 'pacientes.correo', 'pacientes.tlfncasa','pacientes.tlfncelular')
             ->where('citas.medicos','=', $id)
             ->where('citas.fecha', '=', $fecha)
             ->join('pacientes', 'citas.paciente', '=', 'pacientes.id')

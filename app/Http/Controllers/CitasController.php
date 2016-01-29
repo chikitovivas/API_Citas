@@ -17,14 +17,14 @@ use Auth;
 
 class CitasController extends Controller
 {
-    public function __construct(){
+   /* public function __construct(){
         $this->middleware('cors');
         $this->beforeFilter('@find', ['only' => ['show','update','destroy']]);
-    }
+    }*/
 
-    public function find(Route $route){
+   /* public function find(Route $route){
         $this->note = Citas::find($route->getParameter('Citas'));
-    }
+    }*/
     /**
      * Display a listing of the resource.
      *
@@ -116,7 +116,9 @@ class CitasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $cita = Citas::find($id);
+
+        $cita->delete();   
     }
 
 
