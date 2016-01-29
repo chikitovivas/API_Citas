@@ -34,5 +34,5 @@ class CatalogoPreguntas extends Model
 
 		return $respuestas;			
 	}
-}
+
 }

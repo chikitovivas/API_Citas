@@ -8,6 +8,7 @@ use API_Medico\Http\Requests;
 use API_Medico\Http\Controllers\Controller;
 use API_Medico\Respuestas;
 use API_Medico\CatalogoPreguntas;
+use API_Medico\CatalogoRespuestas;
 use Input;
 use API_Medico\Patologias;
 
@@ -58,26 +59,46 @@ class EncuestasController extends Controller
 
     public function PreguntasPatologias()
     {
-
         $patologias = Patologias::all();
-        $respuestas = ["hola"=>""];
-        $respuestas2 = ["chao"=>""];
-
-       /* $data = "";
 
         foreach ($patologias as $patologia) {
 
             $respuesta = CatalogoPreguntas::getAllbyPatologia($patologia->id);
 
-            $data = 
-
-
-        }*/
-            
-        $data = array_merge($respuestas);
-
-        $data = array_merge($respuestas2);
+            $respuesta = [$patologia->nombre => $respuesta];
+            if($patologia->id === 1){
+                $data = $respuesta;
+            }else{
+                $data = array_merge($data,$respuesta);
+            }   
+        }
 
         return response()->json($data); 
-    }   
+    }
+
+    public function createPreguntas()
+    {
+        $data = Input::all();
+
+        $pregunta =  new CatalogoPreguntas;
+        $pregunta->fill($data);
+        $pregunta->save();
+    }  
+
+    public function createCrespuestas(){
+        $data = Input::all();
+
+        $respuesta =  new CatalogoRespuestas;
+        $respuesta->fill($data);
+        $respuesta->save();        
+    }
+
+    public function createPatologia()
+    {
+        $data = Input::all();
+
+        $patologia =  new Patologias;
+        $patologia->fill($data);
+        $patologia->save();  
+    }
 }

@@ -47,12 +47,14 @@ Route::any('Citas/edit/{id}','CitasController@edit'); // edit
 
 
 /*************************************************** PacientesController *************************************************/
-//Route::resource('Pacientes','PacientesController');
+Route::resource('Pacientes','PacientesController');
 /*---------------GET-----------------------*/
 Route::get('Pacientes/porId/{id}','PacientesController@findById');	//Herrera, encontrar paciente por id
 Route::get('Pacientes/porCedula/{cedula}','PacientesController@findByCedula');	//Boscan, encontrar paciente por cedula
 Route::get('Pacientes/historias/{id}/{username}','PacientesController@citas'); // Herrera, todas las citas de un paciente por id /username
+Route::post('Pacientes/create','PacientesController@create');
 /*---------------POST-----------------------*/
+Route::any('Pacientes/create','PacientesController@create'); //Lino, crear paciente retornando id
 
 
 /*************************************************** MedicosController *************************************************/
@@ -79,3 +81,7 @@ Route::get('Preguntas/patologias','EncuestasController@PreguntasPatologias');	//
 
 /*---------------POST-----------------------*/
 Route::any('Citas/respuestas','EncuestasController@createRespuestasCita');	//Boscan, crear registros respuestas de una cita
+Route::post('Preguntas/create','EncuestasController@createPreguntas');	//Boscan, crear Catalogo preguntas 
+Route::post('Respuestas/create','EncuestasController@createCrespuestas');	//Boscan, crear Catalogo respuestas 
+Route::post('patologias/create','EncuestasController@createCrespuestas');	//Boscan, crear Catalogo respuestas 
+
