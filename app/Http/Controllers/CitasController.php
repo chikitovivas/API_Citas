@@ -135,7 +135,9 @@ class CitasController extends Controller
 
         $cita = Citas::where('citas.paciente','=',$paciente[0]->id)->get();
 
-        return response()->json(["citas" => $cita,"paciente" => $paciente]);
+       // $return = array("citas" => $cita);
+
+        return response()->json($cita);
 
     }
 

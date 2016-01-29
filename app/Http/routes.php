@@ -64,7 +64,7 @@ Route::any('Pacientes/create','PacientesController@create'); //Lino, crear pacie
 /*---------------GET-----------------------*/
 Route::get('Medicos/cita/{fecha}/{username}','MedicosController@citas');	//Herrera, citas de un medico /username
 Route::get('Medicos/get_CPacientes/{username}','MedicosController@get_Pacientes_Citas'); //Herrera,Boscan, pacientes de todas las citas de un medico /username
-Route::get('Medicos/configuracion/{username}','MedicosController@getConfiguracion'); //yanir, get configuracion /username
+Route::get('MedicosController/configuracion/{username}','MedicosController@getConfiguracion'); //yanir, get configuracion /username
 
 /*---------------POST-----------------------*/
 Route::any('Medicos/edit/{username}','MedicosController@edit'); //yanir, editar configuracion /username
