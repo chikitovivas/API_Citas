@@ -23,6 +23,8 @@ class PacientesController extends Controller
         //
     }
 
+    
+
     /**
      * Show the form for creating a new resource.
      *
@@ -36,6 +38,8 @@ class PacientesController extends Controller
 
         return response()->json($paciente->id);
     }
+
+
 
     /**
      * Store a newly created resource in storage.

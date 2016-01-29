@@ -133,6 +133,8 @@ class MedicosController extends Controller
         $horario = Horario::getByMedico($medico->id);
         $dias = Dias_atencion::getByMedico($medico->id);
 
-        return response()->json(["medico" => $medico, "horario" => $horario, "dias" => $dias]);
+        $return = array("medico" => $medico, "horario" => $horario[0], "dias" => $dias[0]);
+
+        return response()->json(array($return));
     }
 }
